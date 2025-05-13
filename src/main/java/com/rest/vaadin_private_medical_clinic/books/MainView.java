@@ -3,7 +3,6 @@ package com.rest.vaadin_private_medical_clinic.books;
 import com.rest.vaadin_private_medical_clinic.books.domain.Book;
 import com.rest.vaadin_private_medical_clinic.books.service.BookService;
 import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -11,7 +10,7 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.Route;
 
-@Route
+@Route("books")
 public class MainView extends VerticalLayout {
 
     private BookService bookService = BookService.getInstance();

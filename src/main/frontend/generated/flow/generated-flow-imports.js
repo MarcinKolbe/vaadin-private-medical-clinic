@@ -1,6 +1,6 @@
 import '@vaadin/polymer-legacy-adapter/style-modules.js';
-import '@vaadin/form-layout/src/vaadin-form-layout.js';
 import '@vaadin/vertical-layout/src/vaadin-vertical-layout.js';
+import '@vaadin/form-layout/src/vaadin-form-layout.js';
 import '@vaadin/field-highlighter/src/vaadin-field-highlighter.js';
 import '@vaadin/common-frontend/ConnectionIndicator.js';
 import '@vaadin/accordion/src/vaadin-accordion.js';
