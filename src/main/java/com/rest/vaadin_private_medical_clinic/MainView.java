@@ -12,6 +12,7 @@ public class MainView extends VerticalLayout {
     private Button userButton = new Button("User List");
     private Button doctorButton = new Button("Doctor List");
     private Button patientsButton = new Button("Patient list");
+    private Button templatesButton = new Button("Doctor Template list");
     private Span welcome = new Span("Welcome to the private medical clinic");
 
     public MainView() {
@@ -20,10 +21,16 @@ public class MainView extends VerticalLayout {
         welcome.getStyle().set("font-weight", "bold");
         patientsButton.addClickListener(e ->
                 getUI().ifPresent(ui -> ui.navigate("patients")));
+        doctorButton.addClickListener(e ->
+                getUI().ifPresent(ui -> ui.navigate("doctors")));
+        userButton.addClickListener(e ->
+                getUI().ifPresent(ui -> ui.navigate("users")));
+        templatesButton.addClickListener(e ->
+                getUI().ifPresent(ui -> ui.navigate("templates")));
         HorizontalLayout header = new HorizontalLayout(welcome);
         header.setWidthFull();
         header.setJustifyContentMode(JustifyContentMode.CENTER);
-        HorizontalLayout toolbar = new HorizontalLayout(userButton, doctorButton, patientsButton);
+        HorizontalLayout toolbar = new HorizontalLayout(userButton, doctorButton, patientsButton, templatesButton);
         toolbar.setWidthFull();
         toolbar.setJustifyContentMode(JustifyContentMode.CENTER);
 

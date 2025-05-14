@@ -15,6 +15,42 @@ public class Patient {
     private List<Long> appointmentIdList;
     private List<Long> reviewIdList;
 
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
+
+    public void setPhoneNumber(int phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public void setPesel(String pesel) {
+        this.pesel = pesel;
+    }
+
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public void setUserId(long userId) {
+        this.userId = userId;
+    }
+
+    public void setAppointmentIdList(List<Long> appointmentIdList) {
+        this.appointmentIdList = appointmentIdList;
+    }
+
+    public void setReviewIdList(List<Long> reviewIdList) {
+        this.reviewIdList = reviewIdList;
+    }
+
     public long getId() {
         return id;
     }

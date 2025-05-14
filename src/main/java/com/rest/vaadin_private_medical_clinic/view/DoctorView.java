@@ -1,9 +1,9 @@
 package com.rest.vaadin_private_medical_clinic.view;
 
-import com.rest.vaadin_private_medical_clinic.domain.Patient;
-import com.rest.vaadin_private_medical_clinic.form.PatientForm;
-import com.rest.vaadin_private_medical_clinic.form.PatientRegistrationForm;
-import com.rest.vaadin_private_medical_clinic.service.PatientService;
+import com.rest.vaadin_private_medical_clinic.domain.Doctor;
+import com.rest.vaadin_private_medical_clinic.form.DoctorForm;
+import com.rest.vaadin_private_medical_clinic.form.DoctorRegistrationForm;
+import com.rest.vaadin_private_medical_clinic.service.DoctorService;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.Span;
@@ -13,53 +13,53 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.Route;
 
-@Route("patients")
-public class PatientView extends VerticalLayout{
+@Route("doctors")
+public class DoctorView extends VerticalLayout {
 
-    private PatientService service;
-    private Grid<Patient> grid = new Grid<>(Patient.class);
+    private DoctorService service;
+    private Grid<Doctor> grid = new Grid<>(Doctor.class);
     private Button back = new Button("← Back");
     private TextField filter = new TextField();
-    private Span header = new Span("Patients");
-    private PatientForm form;
-    private Button registerPatient = new Button("Register Patient");
-    private PatientRegistrationForm registrationForm;
+    private Span header = new Span("Doctors");
+    private DoctorForm form;
+    private Button registerDoctor = new Button("Register Doctor");
+    private DoctorRegistrationForm registrationForm;
 
-    public PatientView(PatientService service) {
+    public DoctorView(DoctorService service) {
         this.service = service;
-        this.form = new PatientForm(this, this.service);
-        this.registrationForm = new PatientRegistrationForm(this, this.service);
-        form.setPatient(null);
+        this.form = new DoctorForm(this, this.service);
+        this.registrationForm = new DoctorRegistrationForm(this, this.service);
+        form.setDoctor(null);
         registrationForm.setVisible(false);
         filter.setPlaceholder("Filter by lastname...");
         filter.setClearButtonVisible(true);
         filter.setValueChangeMode(ValueChangeMode.EAGER);
         filter.addValueChangeListener(event -> update());
-        grid.setColumns("id", "firstname", "lastname", "pesel", "phoneNumber", "birthDate");
-        grid.setItems(service.getAllPatients());
+        grid.setColumns("id", "firstname", "lastname", "specialization", "rating");
+        grid.setItems(service.getAllDoctors());
         back.addClickListener (e -> getUI().ifPresent(ui -> ui.navigate("")));
-        registerPatient.addClickListener(e -> showRegistrationForm());
+        registerDoctor.addClickListener(e -> showRegistrationForm());
         header.getStyle().set("text-align", "center");
         header.getStyle().set("font-size", "30px");
         header.getStyle().set("font-weight", "bold");
         header.setWidthFull();
-        HorizontalLayout toolbar = new HorizontalLayout(back, filter, registerPatient);
+        HorizontalLayout toolbar = new HorizontalLayout(back, filter, registerDoctor);
         HorizontalLayout mainContent = new HorizontalLayout(grid, form, registrationForm);
         mainContent.setSizeFull();
         grid.setSizeFull();
         grid.asSingleSelect().addValueChangeListener(
-                event -> form.setPatient(grid.asSingleSelect().getValue()));
+                event -> form.setDoctor(grid.asSingleSelect().getValue()));
         add(header, toolbar, mainContent);
         setSizeFull();
         refresh();
     }
 
     public void update() {
-        grid.setItems(service.getPatientsByLastname(filter.getValue()));
+        grid.setItems(service.getDoctorsByLastname(filter.getValue()));
     }
 
     public void refresh() {
-        grid.setItems(service.getAllPatients());
+        grid.setItems(service.getAllDoctors());
     }
 
     public void showRegistrationForm() {

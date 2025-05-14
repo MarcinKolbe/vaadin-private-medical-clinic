@@ -1,6 +1,5 @@
 package com.rest.vaadin_private_medical_clinic.form;
 
-import com.rest.vaadin_private_medical_clinic.MainView;
 import com.rest.vaadin_private_medical_clinic.domain.Patient;
 import com.rest.vaadin_private_medical_clinic.service.PatientService;
 import com.rest.vaadin_private_medical_clinic.view.PatientView;
@@ -25,7 +24,8 @@ public class PatientForm extends FormLayout {
     private DatePicker birthDate = new DatePicker("Birthdate");
     private Binder<Patient> binder = new Binder<>(Patient.class);
 
-    public PatientForm(PatientView patientView) {
+    public PatientForm(PatientView patientView, PatientService patientService) {
+        this.patientService = patientService;
         HorizontalLayout buttons = new HorizontalLayout(updateButton, deleteButton);
         updateButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
         buttons.setSpacing(true);
